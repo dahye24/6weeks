@@ -1,11 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const cookieParser = require('cookie-parser');
+const User = require('./user.route');
+const Post = require('./post.route');
+const Comment = require('./comment.route');
 
 router.use(cookieParser());
 router.use(express.json());
 
-// 각자 router 파일 연결.
-// 각 router 파일에서 url 설정하기.
+router.use('/', User);
+router.use('/posts', Post);
+router.use('/comments', Comment)
 
 module.exports = router;
