@@ -1,10 +1,10 @@
 const {Users} = require('../models');
 
 class UserRepository {
-    createUser = async (loginId, nickname, password) => {
+    createUser = async (loginId, nickname, hash) => {
         try {
             // 유저 정보 생성.
-            const userData = await Users.create({loginId, nickname, password});
+            const userData = await Users.create({loginId, nickname, password: hash});
             return userData;
         } catch (err) {
             const error = new Error(`잘못된 정보 입니다.`);
