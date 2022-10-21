@@ -2,33 +2,43 @@ const UserService = require('../services/user.service');
 const Joi = require('joi');
 
 const schema = Joi.object().keys({
-  loginId: Joi.string().alphanum().min(8).max(12).required(),
-  nickname: Joi.string().min(2).max(30).required(),
-  password: Joi.string().disallow("loginId").required(),
-  confirmPassword: Joi.ref("password"),
-})
+    loginId        : Joi.string().alphanum().min(8).max(12).required(),
+    password       : Joi.string().disallow('loginId').required(),
+    confirmPassword: Joi.ref('password'),
+});
 
 class UserController {
-  userService = new UserService();
+    userService = new UserService();
 
-  createUser = async (req, res) => {
-    try {
-      const {loginId, nickname, password, confirmPassword} = req.body;
-      if (password !== confirmPassword) {
-        return res.json({message: "비밀번호가 일치하지 않습니다."})
-      }
+    createUser = async (req, res) => {
+        try {
+            // joi 로 validate. Error 발생 시 catch.
+            await schema.validateAsync(req.body);
 
-      const userData = await this.userService.createUser(loginId, nickname, password);
-      res.status(200).json(userData);
-    } catch (err) {
-      res.status(400).json({errorMessage: "입력 정보를 조건에 맞게 입력해주세요."})
-    }
+            const {loginId, nickname, password} = req.body;
 
-  };
+            // 회원가입 된 유저의 정보 response.
+            const userData = await this.userService.createUser(loginId, nickname, password);
+            res.status(200).json(userData);
+        } catch (err) {
+            console.log(err);
+            return res.status(err.statusCode || 500).json({message: err.message});
+        }
 
-  loginUser = async (req, res) => {
+    };
 
-  };
-}
+    loginUser = async (req, res) => {
+        try {
+            const {loginId, password} = req.body;
+            // UserService 에서 검증 후 매치되면 token 생성 후 return.
+            const token = await this.userService.loginUser(loginId, password);
+            res.cookie('token', token);
+            res.status(200).json({message: '로그인이 되었습니다.'});
+        } catch (err) {
+            console.log(err);
+            return res.status(err.statusCode || 500).json({message: err.message});
+        }
+    };
+};
 
 module.exports = UserController;

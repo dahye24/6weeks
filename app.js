@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
-const Router = require('./routes')
+const router = require('./routes/index')
 
-app.use(Router);
+app.use(router);
 
 app.listen(3000, () => {
     console.log("listening on port 3000")
