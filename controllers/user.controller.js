@@ -15,10 +15,10 @@ class UserController {
             // joi 로 validate. Error 발생 시 catch.
             await schema.validateAsync(req.body);
 
-            const {loginId, nickname, password} = req.body;
+            const {loginId, password, confirmPassword} = req.body;
 
             // 회원가입 된 유저의 정보 response.
-            const userData = await this.userService.createUser(loginId, nickname, password);
+            const userData = await this.userService.createUser(loginId, password, confirmPassword);
             res.status(200).json(userData);
         } catch (err) {
             console.log(err);
