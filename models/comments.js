@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             type      : DataTypes.INTEGER,
         },
-        postId   : DataTypes.INTEGER,
+        postId   : DataTypes.INTEGER,  //닉네임 없어도 되나요??
         userId   : DataTypes.INTEGER,
         comment  : DataTypes.STRING
     }, {

@@ -24,3 +24,4 @@ const development = {
   }
 
   module.exports = {development, test, production}
+

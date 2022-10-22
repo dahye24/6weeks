@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('Comments', {
+        await queryInterface.createTable('Comments', {   //nickname 없어도 되는지??
             commentId: {
                 allowNull    : false,
                 autoIncrement: true,
