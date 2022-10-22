@@ -14,21 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
 
-<<<<<<< HEAD
-    Comments.init({
-        commentId: {
-            primaryKey: true,
-            type      : DataTypes.INTEGER,
-        },
-        postId   : DataTypes.INTEGER,  //닉네임 없어도 되나요??
-        userId   : DataTypes.INTEGER,
-        comment  : DataTypes.STRING
-    }, {
-        sequelize,
-        modelName: 'Comments',
-    });
-    return Comments;
-=======
+
   Comments.init({
     commentId: {
       primaryKey: true,
@@ -42,5 +28,5 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Comments',
   });
   return Comments;
->>>>>>> e07761eed8cb8dff143248fdf8284e271066959c
+
 };

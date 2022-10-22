@@ -25,7 +25,7 @@ class CommentsController {
     getAllComments = async (req, res, next) => { // 메인에서 특정 게시물의 댓글 갯수??
         try {
             const {postId} = req.params;
-            const comments = await this.commentsService.findAllComments(postId);
+            const comments = await this.commentsService.getAllComments(postId);
 
             res.json({ data: int(comments.length)});  // **********************물어보기************!!!!!!!!!!!!!!!!!!!!
         } catch (error) {
@@ -36,7 +36,7 @@ class CommentsController {
     getPostComments = async (req, res, next) => {  //특정 게시물에 단 댓글 다 보이게하기
         try{
             const { postId } = req.params;
-            const comments = await this.commentsService.findAllComments(postId);
+            const comments = await this.commentsService.getPostComments(postId);
 
             res.json({ data: comments })
         } catch (error) {
@@ -50,7 +50,7 @@ class CommentsController {
             const {userId} = res.locals.user;
             const { comment } = req.body;
 
-            const comments = await this.commentsService.findCommentById(commentId);
+            const comments = await this.commentsService.updateComment(commentId);
 
             if (comments.userId !== userId) {
                 return res.status(400).json({ message : "수정 권한이 없습니다."})
@@ -71,7 +71,7 @@ class CommentsController {
             const {commentId} = req.params;
             const {userId} = res.locals.user;
 
-            const comments = await this.commentsService.findCommentById(commentId);
+            const comments = await this.commentsService.deleteComment(commentId);
 
             if (comments.userId !== userId) {
                 return res.status(400).json({ message : "삭제 권한이 없습니다."})
@@ -82,7 +82,7 @@ class CommentsController {
             res.json({ message : "댓글이 삭제되었습니다"});
 
         } catch (error) {
-            res.status(400).json({ errorMessage: error.message });
+            res.status(error.status || 400).json({ errorMessage: error.message });
         }
     };            
 
