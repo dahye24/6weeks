@@ -44,7 +44,7 @@ class UserService {
             // 유효시간이 24시간인 token 발급.
             return {
                 token: jwt.sign(
-                    {userId: userData.userId, loginId: userData.loginId},
+                    {userId: userData.userId},
                     process.env.SECRETKEY,
                     {expiresIn: '24h'})
             };
