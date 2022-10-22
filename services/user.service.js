@@ -7,7 +7,7 @@ const saltRounds = 12;
 
 require('dotenv').config();
 
-class UserController {
+class UserService {
     userRepository = new UserRepository();
 
     createUser = async (loginId, nickname, password) => {
@@ -61,4 +61,4 @@ class UserController {
     };
 }
 
-module.exports = UserController;
+module.exports = UserService;

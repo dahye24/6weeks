@@ -1,4 +1,4 @@
-const PostService = require("../services/post.services");
+const PostService = require("../services/post.service");
 const Joi = require('joi');
 const re_title = /^[a-zA-Z0-9\s\S]{1,40}$/;
 const re_content = /^[\s\S]{1,3000}$/;
