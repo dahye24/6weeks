@@ -25,9 +25,7 @@ module.exports = (req, res, next) => {
             errorMessage: "로그인 후 이용이 가능합니다.",
         });
     }
-<<<<<<< HEAD
+
 };
 
-=======
-}
->>>>>>> 5a21b745144c4bfe27a9ce64ce4bf16ce724405e
+

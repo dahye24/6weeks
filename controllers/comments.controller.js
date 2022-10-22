@@ -1,6 +1,6 @@
 const CommentsService = require('../services/comments.service');
 
-class CommentsController {
+class CommentsController {                   //controller는 요청보내기,받기  
     commentsService = new CommentsService();
 
     createComment = async (req, res, next) => {   //댓글 생성
