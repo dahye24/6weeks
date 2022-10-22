@@ -1,7 +1,7 @@
 {
   "name": "6project",
   "version": "1.0.0",
-  "description": "",
+  "description": "![KakaoTalk_Photo_2022-10-21-18-04-36](https://user-images.githubusercontent.com/112174727/197164876-c3a2504c-16f5-4de7-b138-88bd47583073.jpeg)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,5 +21,13 @@
   },
   "devDependencies": {
     "sequelize-cli": "^6.5.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dahye24/6weeks.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dahye24/6weeks/issues"
+  },
+  "homepage": "https://github.com/dahye24/6weeks#readme"
 }
