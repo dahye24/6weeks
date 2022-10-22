@@ -15,14 +15,14 @@ findAllPost = async () => {
 //게시글 상세 조회  & 댓글 조회
 findPostById = async (postId) => {
     const post = await Posts.findByPk(postId);
-
+    //console.log(postId)
     return post;
   };
 
+
 //게시글 작성
-createPost = async(postId, loginId, typeofpet, category, subcategory, title, maker, product, content, photo, likes) => {
+createPost = async(loginId, typeofpet, category, subcategory, title, maker, product, content, photo) => {
     const createPostData = await Posts.create({
-      postId,
       loginId,
       typeofpet,
       category,
@@ -32,7 +32,6 @@ createPost = async(postId, loginId, typeofpet, category, subcategory, title, mak
       product,
       content,
       photo,
-      likes : 0
     });
     console.log(createPostData);
 
@@ -43,18 +42,18 @@ createPost = async(postId, loginId, typeofpet, category, subcategory, title, mak
 updatePost = async (postId, content) => {
     const updatePostData = await Posts.update(
       {content },
-      { where: { postId } }
+      { where: { postId} }
     );
-    //console.log()
     return updatePostData;
   };  
 
+//loginId와 postId가 같을때 수정해라
 findloginId = async (postId) => {
     const findloginId = await Posts.findAll( { where : {postId} });
     console.log(findloginId[0].dataValues.postId)
     return findloginId;
   };
-}
+
 
   //게시글 삭제
 deletePost = async (postId) => {
@@ -62,6 +61,7 @@ deletePost = async (postId) => {
 
     return updatePostData;
 };
+}
 
 
 

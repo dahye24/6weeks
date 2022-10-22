@@ -10,15 +10,21 @@ module.exports = (req, res, next) => {
                 errorMessage: '로그인이 필요한 기능입니다.',
             });
         }
-        console.log(cookies)
+        
         const {token} = cookies
+        console.log(token)
 
         const {userId} = jwt.verify(token, process.env.SECRETKEY);
+        console.log(userId)
 
-        const user = Users.findAll({where : {userId}})
-        res.locals.user = user;
+        const user = Users.findByPk(userId).then(user=>{
+            res.locals.user = user;
+            console.log(user)
+            next();
+        })
+        
 
-        next();
+        
     } catch (err) {
         res.status(401).json({
             errorMessage: "로그인 후 이용이 가능합니다.",
