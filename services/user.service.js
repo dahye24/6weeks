@@ -6,20 +6,19 @@ const saltRounds = 12;
 
 require('dotenv').config();
 
-class UserController {
+class UserService {
     userRepository = new UserRepository();
 
-    createUser = async (loginId, nickname, password) => {
+    createUser = async (loginId, password, confirmPassword) => {
         try {
             // password 암호화.
             const hash = bcrypt.hashSync(password, saltRounds);
             // hash 된 비밀번호로 회원정보 저장.
-            const userData = await this.userRepository.createUser(loginId, nickname, hash);
+            const userData = await this.userRepository.createUser(loginId, hash);
 
             return {
                 userId   : userData.null,
                 loginId  : userData.loginId,
-                nickname : userData.nickname,
                 createdAt: userData.createdAt,
             };
         } catch (err) {
@@ -56,4 +55,4 @@ class UserController {
     };
 }
 
-module.exports = UserController;
+module.exports = UserService;
