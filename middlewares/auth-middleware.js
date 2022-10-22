@@ -4,24 +4,24 @@ const {Users} = require("../models");
 
 
 module.exports = (req, res, next) => {
-    const authorization = req.cookies.token;
+    const {authorization} = req.cookies.token;
+    // if (!authorization) {
+    //     res.status(401).json({
+    //         errorMessage: "로그인 후 이용이 가능합니다.",
+    //     });
+    //     return;
+    // }
 
-    if (!authorization) {
-        res.status(401).json({
-            errorMessage: "로그인 후 이용이 가능합니다.",
-        });
-        return;
-    }
-
-    try {
+    //try {
         const {userId} = jwt.verify(authorization, process.env.SECRETKEY);
+        console.log(userId)
         Users.findByPk(userId).then((user) => {
             res.locals.user = user;
             next();
         });
-    } catch (err) {
-        res.status(401).json({
-            errorMessage: "로그인 후 이용이 가능합니다.",
-        });
-    }
+    // } catch (err) {
+    //     res.status(401).json({
+    //         errorMessage: "111111로그인 후 이용이 가능합니다.",
+    //     });
+    // }
 };

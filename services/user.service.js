@@ -10,7 +10,7 @@ require('dotenv').config();
 class UserService {
     userRepository = new UserRepository();
 
-    createUser = async (loginId, password, confirmPassword) => {
+    createUser = async (loginId, password) => {
         try {
             // password 암호화.
 
@@ -25,7 +25,7 @@ class UserService {
                 createdAt: userData.createdAt,
             };
         } catch (err) {
-            err = new Error(`UserService Error`);
+            err = new Error(`이미 존재하는 아이디입니다.`);
             err.statusCode = 500;
             throw err;
         }

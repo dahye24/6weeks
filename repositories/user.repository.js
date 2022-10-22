@@ -2,7 +2,7 @@ const {Users} = require('../models');
 
 class UserRepository {
 
-    createUser = async (loginId, nickname, hash) => {
+    createUser = async (loginId, hash) => {
         try {
             // 유저 정보 생성.
             const userData = await Users.create({loginId, password: hash});
