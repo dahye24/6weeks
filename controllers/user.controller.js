@@ -2,7 +2,7 @@ const UserService = require('../services/user.service');
 const Joi = require('joi');
 
 const schema = Joi.object().keys({
-    loginId        : Joi.string().alphanum().min(8).max(12).required(),
+    loginId        : Joi.string().alphanum().min(6).max(12).required(),
     password       : Joi.string().disallow('loginId').required(),
     confirmPassword: Joi.ref('password'),
 });
@@ -21,6 +21,7 @@ class UserController {
             // 회원가입 된 유저의 정보 response.
             const userData = await this.userService.createUser(loginId, password);
             res.status(200).json(userData);
+            console.log(res)
         } catch (err) {
             console.log(err);
             return res.status(err.statusCode || 500).json({message: err.message});
