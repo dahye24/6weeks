@@ -9,40 +9,44 @@ module.exports = {
         primaryKey   : true,
         type         : Sequelize.INTEGER
       },
-      loginId     : {
+      loginId: {
+        type: Sequelize.STRING,
+      },
+      typeofpet: {
         type: Sequelize.STRING
       },
-      typeofpet  : {
-        type: Sequelize.STRING
-      },
-      category   : {
+      category: {
         type: Sequelize.STRING
       },
       subcategory: {
         type: Sequelize.STRING
       },
-      title      : {
+      title: {
         type: Sequelize.STRING
       },
-      maker      : {
+      maker: {
         type: Sequelize.STRING
       },
-      product    : {
+      product: {
         type: Sequelize.STRING
       },
-      content    : {
+      content: {
         type: Sequelize.STRING
       },
-      photo      : {
+      photo: {
         type: Sequelize.STRING
       },
-      createdAt  : {
+      likes: {
+        type: Sequelize.INTEGER,
+        default: 0
+      },
+      createdAt: {
         allowNull: false,
-        type     : Sequelize.DATE
+        type: Sequelize.DATE
       },
-      updatedAt  : {
+      updatedAt: {
         allowNull: false,
-        type     : Sequelize.DATE
+        type: Sequelize.DATE
       }
     });
   },
