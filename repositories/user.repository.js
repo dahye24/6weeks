@@ -8,9 +8,9 @@ class UserRepository {
             const userData = await Users.create({loginId, password: hash});
             return userData;
         } catch (err) {
-            const error = new Error(`잘못된 정보 입니다.`);
-            error.statusCode = 500;
-            throw error;
+            const error = new Error(`이미 중복된 아이디입니다.`);
+            error.statusCode = 400;
+            throw err;
         }
     }
 
