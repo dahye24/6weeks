@@ -12,8 +12,7 @@ class UserRepository {
             // error.statusCode = 500;
             throw err;
         }
-
-    };
+    }
 
     loginUser = async (loginId) => {
         try {
@@ -27,8 +26,7 @@ class UserRepository {
             error.statusCode = 500;
             throw error;
         }
-
-    };
+    }
 }
 
 module.exports = UserRepository;

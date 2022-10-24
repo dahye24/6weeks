@@ -10,18 +10,18 @@ findAllPost = async () => {
     return allPost.map((postData) => {
       return {
         postId: postData.postId,
-        loginId: postData.loginId,
-        title: postData.title,
+        loginId: postData.loginId,        
+        typeofpet : postData.typeofpet,
+        product : postData.product, 
+        maker : postData.maker,
+        photo : postData.photo,
+        title: postData.title,        
+        content: postData.content,
         likes: postData.likes,
-        // typeofpet : postData.typeofpet,
-        // maker : postData.maker,
-        // product : productData.product,
-        // photo : photoData.photo,
-        // content: postData.content,
       };
     });
   }catch (err) {
-    err = new Error(`잘못된 정보 입니다.`);
+    err = new Error(`게시글 목록을 조회를 실패했습니다.`);
     err.statusCode = 500;
     throw err;
   }
@@ -35,13 +35,18 @@ findPostById = async (postId) => {
     return {
         postId: findPost.postId,
         loginId: findPost.loginId,
+        typeofpet : findPost.typeofpet,
+        product : findPost.product, 
+        maker : findPost.maker,
+        photo : findPost.photo,
         title: findPost.title,
         content: findPost.content,
+        likes: findPost.likes,
         createdAt: findPost.createdAt,
         updatedAt: findPost.updatedAt,
       };
     }catch (err) {
-          err = new Error(`잘못된 정보 입니다.`);
+          err = new Error(`게시물이 존재하지 않습니다.`);
           err.statusCode = 500;
           throw err;
     }
@@ -50,7 +55,7 @@ findPostById = async (postId) => {
 //게시글 작성
 createPost = async (loginId, typeofpet, category, subcategory, title, maker, product, content, photo) => {
   try{
-      const createPostData = await this.postRepository.createPost(
+      await this.postRepository.createPost(
         loginId,
         typeofpet,
         category,
@@ -61,7 +66,7 @@ createPost = async (loginId, typeofpet, category, subcategory, title, maker, pro
         content,
         photo
       );    
-        return  "message : 게시글 작성에 성공하였습니다."
+        return  "게시글 작성에 성공하였습니다."
   }catch (err) {
         err = new Error(`잘못된 정보 입니다.`);
         err.statusCode = 500;
@@ -77,14 +82,14 @@ updatePost = async (postId, content, loginId) => {
 
     if (loginId === FindloginId[0].dataValues.loginId) {
     await this.postRepository.updatePost(postId, content);
-    const updatePost = await this.postRepository.findPostById(postId);
+    await this.postRepository.findPostById(postId);
     
       return "리뷰를 수정했습니다."
     }else {
       return "리뷰 작성자의 loginId와 다릅니다."
     }
   }catch (err) {
-      err = new Error(`잘못된 정보 입니다.`);
+      err = new Error(`수정가능한 게시글이 없습니다.`);
       err.statusCode = 500;
       throw err;
   }
@@ -104,7 +109,7 @@ deletePost = async (postId, loginId) => {
       return "삭제 권한이 없습니다" 
     };
   }catch (err) {
-      err = new Error(`잘못된 정보 입니다.`);
+      err = new Error(`삭제 가능한 게시글이 없습니다.`);
       err.statusCode = 500;
       throw err;
   }
