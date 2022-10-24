@@ -17,10 +17,12 @@ module.exports = (sequelize, DataTypes) => {
   Likes.init({
     likeId: {
       primaryKey: true,
-      type      : DataTypes.INTEGER,
+      type: DataTypes.INTEGER
     },
     postId: DataTypes.INTEGER,
-    loginId: DataTypes.STRING
+    loginId: DataTypes.STRING,
+    title: DataTypes.STRING,
+    likes: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Likes',
