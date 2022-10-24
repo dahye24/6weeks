@@ -1,4 +1,4 @@
-const { Comments } = require('../models');
+const { Comments,Posts } = require('../models');
 
 class CommentsRepository {
 
@@ -12,8 +12,14 @@ class CommentsRepository {
         return createCommentData;
     };
 
-    getAllComments = async (postId) => {  //  메인 게시물에서 댓글 갯수 *******************여기도 물어보기******************************** */
-        const comments = await Comments.findAll({where : {postId}});
+    findpostId = async (postId) => {  //  포스트 아이디 찾기
+        const findpostId = await Posts.findOne({where:{postId}});
+        
+        return findpostId;
+    };
+
+    getAllComments = async (postId) => {  //  메인 게시물에서 댓글 갯수
+        const comments = await Comments.findAll({where : {postId}});    
         
         return comments;
     };
@@ -35,7 +41,14 @@ class CommentsRepository {
         const deleteComment = await Comments.destroy({where: { commentId,loginId }});
         return deleteComment;
     };    
+    
+    findcommentId = async (commentId) => {  //commentId 불러오기  
+        const findloginId = await Comments.findByPk(commentId)
+        
+        return findloginId;
+    };
 
-}
+    
+};
 
 module.exports = CommentsRepository;
