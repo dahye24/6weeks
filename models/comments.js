@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
 
+
   Comments.init({
     commentId: {
       primaryKey: true,
@@ -27,4 +28,5 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Comments',
   });
   return Comments;
+
 };

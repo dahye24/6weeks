@@ -23,4 +23,9 @@ const development = {
     "dialect": "mysql"
   }
 
+<<<<<<< HEAD
   module.exports = {development, test, production}
+
+=======
+  module.exports = {development, test, production}
+>>>>>>> 9b4b7c36aa5b9e26d59481020d04806aaf2e382d
