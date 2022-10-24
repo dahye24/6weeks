@@ -66,7 +66,7 @@ createPost = async (loginId, typeofpet, category, subcategory, title, maker, pro
         content,
         photo
       );    
-        return  "message : 게시글 작성에 성공하였습니다."
+        return  "게시글 작성에 성공하였습니다."
   }catch (err) {
         err = new Error(`잘못된 정보 입니다.`);
         err.statusCode = 500;

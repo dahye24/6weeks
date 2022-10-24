@@ -5,7 +5,7 @@ class CommentsService {
 
     createComment = async ( postId,loginId,comment  ) => {  // 댓글 작성
 
-      const findpostId = await this.commentsRepository.findpostId(postId);
+      const findpostId = await this.commentsRepository.findpostId(postId); 
       
       try{
 
