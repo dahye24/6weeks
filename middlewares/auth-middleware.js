@@ -1,3 +1,4 @@
+
 require('dotenv').config();
 const jwt = require("jsonwebtoken");
 const {Users} = require("../models");
@@ -12,14 +13,19 @@ module.exports = (req, res, next) => {
         }
         
         const {token} = cookies
+        console.log(token)
 
         const {userId} = jwt.verify(token, process.env.SECRETKEY);
+        console.log(userId)
 
         const user = Users.findByPk(userId).then(user=>{
             res.locals.user = user;
+            console.log(user)
             next();
         })
-               
+        
+
+        
     } catch (err) {
         res.status(401).json({
             errorMessage: "로그인 후 이용이 가능합니다.",

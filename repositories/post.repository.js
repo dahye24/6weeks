@@ -11,7 +11,7 @@ findAllPost = async () => {
     });
     return post;
   }catch (err) {
-    const error = new Error(`잘못된 정보 입니다.`);
+    const error = new Error(`게시글 목록을 조회를 실패했습니다.`);
     error.statusCode = 500;
     throw error;
   }
@@ -23,7 +23,7 @@ findPostById = async (postId) => {
     const post = await Posts.findByPk(postId);
     return post;
   }catch{
-      const error = new Error(`잘못된 정보 입니다.`);
+      const error = new Error(`게시물이 존재하지 않습니다.`);
       error.statusCode = 500;
       throw error;
     }
@@ -63,7 +63,7 @@ updatePost = async (postId, content) => {
     );
     return updatePostData;
   }catch{
-    const error = new Error(`잘못된 정보 입니다.`);
+    const error = new Error(`수정가능한 게시글이 없습니다.`);
     error.statusCode = 500;
     throw error;
   }
@@ -75,7 +75,7 @@ findloginId = async (postId) => {
     const findloginId = await Posts.findAll( { where : {postId} });
     return findloginId;
   }catch{
-    const error = new Error(`잘못된 정보 입니다.`);
+    const error = new Error(`잘못된 정보입니다.`);
     error.statusCode = 500;
     throw error;
   }
@@ -87,7 +87,7 @@ deletePost = async (postId, loginId) => {
     const updatePostData = await Posts.destroy({ where: {postId, loginId} });
     return updatePostData;
   }catch{
-    const error = new Error(`잘못된 정보 입니다.`);
+    const error = new Error(`삭제 가능한 게시글이 없습니다.`);
     error.statusCode = 500;
     throw error;
   }

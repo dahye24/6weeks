@@ -21,7 +21,7 @@ findAllPost = async () => {
       };
     });
   }catch (err) {
-    err = new Error(`잘못된 정보 입니다.`);
+    err = new Error(`게시글 목록을 조회를 실패했습니다.`);
     err.statusCode = 500;
     throw err;
   }
@@ -46,7 +46,7 @@ findPostById = async (postId) => {
         updatedAt: findPost.updatedAt,
       };
     }catch (err) {
-          err = new Error(`잘못된 정보 입니다.`);
+          err = new Error(`게시물이 존재하지 않습니다.`);
           err.statusCode = 500;
           throw err;
     }
@@ -89,7 +89,7 @@ updatePost = async (postId, content, loginId) => {
       return "리뷰 작성자의 loginId와 다릅니다."
     }
   }catch (err) {
-      err = new Error(`잘못된 정보 입니다.`);
+      err = new Error(`수정가능한 게시글이 없습니다.`);
       err.statusCode = 500;
       throw err;
   }
@@ -109,7 +109,7 @@ deletePost = async (postId, loginId) => {
       return "삭제 권한이 없습니다" 
     };
   }catch (err) {
-      err = new Error(`잘못된 정보 입니다.`);
+      err = new Error(`삭제 가능한 게시글이 없습니다.`);
       err.statusCode = 500;
       throw err;
   }

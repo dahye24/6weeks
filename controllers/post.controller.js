@@ -37,6 +37,7 @@ createPost = async (req, res, next) => {
     // });
     const {loginId} = res.locals.user;
     const {typeofpet, category, subcategory, title, maker, product, content, photo } = req.body
+
     const createPostData = await this.postService.createPost(
         loginId,
         typeofpet,
