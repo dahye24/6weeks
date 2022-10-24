@@ -13,6 +13,10 @@ class CommentsService {
           return {"message" : "댓글을 등록할 게시물이 없습니다."}
         }
 
+        if(comment === ''){
+          return {"message" : "댓글을 작성해주세요."}
+        }
+
         const createCommentData = await this.commentsRepository.createComment(
             postId,
             loginId,
