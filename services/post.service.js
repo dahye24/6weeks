@@ -10,14 +10,14 @@ findAllPost = async () => {
     return allPost.map((postData) => {
       return {
         postId: postData.postId,
-        loginId: postData.loginId,
-        title: postData.title,
+        loginId: postData.loginId,        
+        typeofpet : postData.typeofpet,
+        product : postData.product, 
+        maker : postData.maker,
+        photo : postData.photo,
+        title: postData.title,        
+        content: postData.content,
         likes: postData.likes,
-        // typeofpet : postData.typeofpet,
-        // maker : postData.maker,
-        // product : productData.product,
-        // photo : photoData.photo,
-        // content: postData.content,
       };
     });
   }catch (err) {
@@ -35,8 +35,13 @@ findPostById = async (postId) => {
     return {
         postId: findPost.postId,
         loginId: findPost.loginId,
+        typeofpet : findPost.typeofpet,
+        product : findPost.product, 
+        maker : findPost.maker,
+        photo : findPost.photo,
         title: findPost.title,
         content: findPost.content,
+        likes: findPost.likes,
         createdAt: findPost.createdAt,
         updatedAt: findPost.updatedAt,
       };
@@ -50,7 +55,7 @@ findPostById = async (postId) => {
 //게시글 작성
 createPost = async (loginId, typeofpet, category, subcategory, title, maker, product, content, photo) => {
   try{
-      const createPostData = await this.postRepository.createPost(
+      await this.postRepository.createPost(
         loginId,
         typeofpet,
         category,
@@ -77,7 +82,7 @@ updatePost = async (postId, content, loginId) => {
 
     if (loginId === FindloginId[0].dataValues.loginId) {
     await this.postRepository.updatePost(postId, content);
-    const updatePost = await this.postRepository.findPostById(postId);
+    await this.postRepository.findPostById(postId);
     
       return "리뷰를 수정했습니다."
     }else {

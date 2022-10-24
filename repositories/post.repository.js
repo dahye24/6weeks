@@ -21,7 +21,6 @@ findAllPost = async () => {
 findPostById = async (postId) => {
   try{
     const post = await Posts.findByPk(postId);
-    //console.log(postId)
     return post;
   }catch{
       const error = new Error(`잘못된 정보 입니다.`);
@@ -74,7 +73,6 @@ updatePost = async (postId, content) => {
 findloginId = async (postId) => {
   try{
     const findloginId = await Posts.findAll( { where : {postId} });
-    console.log(findloginId[0].dataValues.postId)
     return findloginId;
   }catch{
     const error = new Error(`잘못된 정보 입니다.`);
@@ -87,7 +85,6 @@ findloginId = async (postId) => {
 deletePost = async (postId, loginId) => {
   try{
     const updatePostData = await Posts.destroy({ where: {postId, loginId} });
-    console.log( (postId, loginId))
     return updatePostData;
   }catch{
     const error = new Error(`잘못된 정보 입니다.`);

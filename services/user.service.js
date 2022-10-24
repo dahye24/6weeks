@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt');
 // 암호화 연산 10회 설정
 const saltRounds = 12;
 
-
 require('dotenv').config();
 
 class UserService {
@@ -40,7 +39,6 @@ class UserService {
             // 가져온 회원 정보에 있는 hash 된 비밀번호와 위에서 hash 한 비밀번호가 일치하는지 확인.
             const match = bcrypt.compareSync(password, userData.password);
 
-
             if (!match) {
                 const err = new Error(`비밀번호가 일치하지 않습니다.`);
                 err.statusCode = 400;
@@ -56,7 +54,6 @@ class UserService {
         } catch (err) {
             throw err;
         }
-
     };
 }
 

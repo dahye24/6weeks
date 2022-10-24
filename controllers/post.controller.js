@@ -35,7 +35,7 @@ createPost = async (req, res, next) => {
     //   title: Joi.string().pattern(re_title).required(),
     //   content: Joi.string().pattern(re_content).required(),
     // });
-    const {loginId, likes } = res.locals.user;
+    const {loginId} = res.locals.user;
     const {typeofpet, category, subcategory, title, maker, product, content, photo } = req.body
     const createPostData = await this.postService.createPost(
         loginId,
@@ -46,8 +46,7 @@ createPost = async (req, res, next) => {
         maker,
         product,
         content,
-        photo,
-        likes
+        photo
     );
     res.status(200).json({ data: createPostData });
   }catch (err) {
