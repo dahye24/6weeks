@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 // 암호화 연산 10회 설정
 const saltRounds = 12;
-nn 
+
 
 require('dotenv').config();
 
