@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="6week-project" uuid="0cbd4a9e-d3e4-4dfd-a065-4d0efb4c1c9f">
+    <data-source source="LOCAL" name="@expressdb.chy8ifd8tcym.ap-northeast-2.rds.amazonaws.com" uuid="d75d6855-3009-4752-b618-3e8e37c4c3ad">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>

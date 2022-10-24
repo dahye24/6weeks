@@ -16,12 +16,10 @@ class UserController {
             await schema.validateAsync(req.body);
 
             const {loginId, password} = req.body;
-            console.log(password)
 
             // 회원가입 된 유저의 정보 response.
             const userData = await this.userService.createUser(loginId, password);
             res.status(200).json(userData);
-            console.log(res)
         } catch (err) {
             console.log(err);
             return res.status(err.statusCode || 500).json({message: err.message});
