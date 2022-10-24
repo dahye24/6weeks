@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 // 암호화 연산 10회 설정
 const saltRounds = 12;
-
+nn 
 
 require('dotenv').config();
 
@@ -36,10 +36,17 @@ class UserService {
         try {
 
             // loginId로 DB에 있는 회원 정보 가져오기.
-            const userData = await this.userRepository.loginUser(loginId);
+            const userData = await this.userRepository.loginUser(loginId);  //없는 아이디로 로그인 할때 에러내용이 패스워드가 null로 나와서 아예 에러 뜨게 해버림
+            
+            if(userData === null){
+                const err = new Error(`가입 되어있는 정보가 아닙니다.`);    
+                err.statusCode = 400;
+                throw err;
+            }
+            
             // 가져온 회원 정보에 있는 hash 된 비밀번호와 위에서 hash 한 비밀번호가 일치하는지 확인.
             const match = bcrypt.compareSync(password, userData.password);
-
+            
 
             if (!match) {
                 const err = new Error(`비밀번호가 일치하지 않습니다.`);
