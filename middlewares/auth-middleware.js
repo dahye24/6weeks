@@ -11,20 +11,24 @@ module.exports = (req, res, next) => {
                 errorMessage: '로그인이 필요한 기능입니다.',
             });
         }
+        
+        const {token} = cookies
+        console.log(token)
 
-    const { token } = cookies;
+        const {userId} = jwt.verify(token, process.env.SECRETKEY);
+        console.log(userId)
 
-    const { userId } = jwt.verify(token, process.env.SECRETKEY);
-    
-    const user = Users.findByPk(userId).then(user=>{
-      res.locals.user = user;
-      
-      next();
-    })
-  } catch (err) {
-    res.status(401).json({
-      errorMessage: '로그인 후 이용이 가능합니다.',
-    });
-  }
-};
+        const user = Users.findByPk(userId).then(user=>{
+            res.locals.user = user;
+            console.log(user)
+            next();
+        })
+        
 
+        
+    } catch (err) {
+        res.status(401).json({
+            errorMessage: "로그인 후 이용이 가능합니다.",
+        });
+    }
+}

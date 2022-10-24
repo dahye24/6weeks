@@ -35,8 +35,7 @@ createPost = async (req, res, next) => {
     //   title: Joi.string().pattern(re_title).required(),
     //   content: Joi.string().pattern(re_content).required(),
     // });
-
-    const {loginId, likes } = res.locals.user;
+    const {loginId} = res.locals.user;
     const {typeofpet, category, subcategory, title, maker, product, content, photo } = req.body
 
     const createPostData = await this.postService.createPost(
@@ -48,8 +47,7 @@ createPost = async (req, res, next) => {
         maker,
         product,
         content,
-        photo,
-        likes
+        photo
     );
     res.status(200).json({ data: createPostData });
   }catch (err) {
@@ -70,7 +68,7 @@ updatePost = async (req, res, next) => {
       content,
       user.loginId,
     );
-    res.status(200).json({ data: updatePost });
+    res.status(200).json({ message: updatePost });
   }catch (err) {
     console.log(err);
     return res.status(err.statusCode || 500).json({message: err.message});
@@ -84,7 +82,7 @@ deletePost = async (req, res, next) => {
     const { user } = res.locals;
     
     const deletePost = await this.postService.deletePost(postId, user.loginId);
-    res.status(200).json({ data: deletePost});
+    res.status(200).json({ message: deletePost});
     }catch (err) {
       console.log(err);
       return res.status(err.statusCode || 500).json({message: err.message});
