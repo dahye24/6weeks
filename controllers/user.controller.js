@@ -31,9 +31,12 @@ class UserController {
         try {
             const {loginId, password} = req.body;
             // UserService 에서 검증 후 매치되면 token 생성 후 return.
-            const token = await this.userService.loginUser(loginId, password);
-            res.cookie('token', token);
-            res.status(200).json({message: '로그인이 되었습니다.'});
+            const {token} = await this.userService.loginUser(loginId, password);
+            // res.cookie('token', token);
+            res.status(200).json({
+                message: '로그인이 되었습니다.',
+                token: token,
+            });
         } catch (err) {
             console.log(err);
             return res.status(err.statusCode || 500).json({message: err.message});
