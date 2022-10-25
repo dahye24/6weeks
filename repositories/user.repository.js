@@ -10,7 +10,7 @@ class UserRepository {
         } catch (err) {
             const error = new Error(`이미 중복된 아이디입니다.`);
             error.statusCode = 400;
-            throw err;
+            throw error;
         }
     }
 
