@@ -35,7 +35,7 @@ class UserController {
             // res.cookie('token', token);
             res.status(200).json({
                 message: '로그인이 되었습니다.',
-                token: token,
+                token  : token,
             });
         } catch (err) {
             console.log(err);

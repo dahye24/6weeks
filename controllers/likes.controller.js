@@ -10,7 +10,6 @@ updateLikes = async (req, res, next) => {
       const { postId } = req.params;
       const { loginId } = res.locals.user;
       const updatelikes = await this.likesService.updateLikes(postId, loginId);
-      console.log(postId, loginId)
       res.status(200).json({ message: updatelikes}); 
   }catch(err){
       return res.status(err.statusCode || 500).json({message: err.message});
