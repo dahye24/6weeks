@@ -38,7 +38,7 @@ class PostsController {
             const {loginId} = res.locals.user;
             const {typeofpet, category, subcategory, title, maker, product, content, photo} = req.body;
 
-            const createPostData = await this.postService.createPost(
+            await this.postService.createPost(
                 loginId,
                 typeofpet,
                 category,
@@ -49,7 +49,8 @@ class PostsController {
                 content,
                 photo
             );
-            res.status(200).json({data: createPostData});
+            const allPosts = await this.postService.findAllPost();
+            res.status(200).json({data: allPosts});
         } catch (err) {
             console.log(err);
             return res.status(err.statusCode || 500).json({message: err.message});
