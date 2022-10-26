@@ -36,6 +36,8 @@ class PostService {
                 postId   : findPost.postId,
                 loginId  : findPost.loginId,
                 typeofpet: findPost.typeofpet,
+                category : findPost.category,
+                subcategory : findPost.subcategory,
                 product  : findPost.product,
                 maker    : findPost.maker,
                 photo    : findPost.photo,
