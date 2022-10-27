@@ -91,7 +91,7 @@ class PostService {
                 return '리뷰 작성자의 loginId와 다릅니다.';
             }
         } catch (err) {
-            err = new Error(`수정가능한 게시글이 없습니다.`);
+            err = new Error(`수정 가능한 게시글이 없습니다.`);
             err.statusCode = 500;
             throw err;
         }
