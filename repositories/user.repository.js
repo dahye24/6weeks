@@ -8,8 +8,8 @@ class UserRepository {
             const userData = await Users.create({loginId, password: hash});
             return userData;
         } catch (err) {
-            console.log(err)
-            err.message = `User DB 오류`
+            console.log(err);
+            err.message = `User DB 오류`;
             err.statusCode = 500;
             throw err;
         }

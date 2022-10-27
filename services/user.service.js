@@ -14,13 +14,13 @@ class UserService {
         try {
             // loginId가 unique 인지 확인.
             const dupCheck = await Users.findOne({
-                where:{loginId}
-            })
+                where: {loginId}
+            });
 
             // loginId exist 확인.
             if (dupCheck !== null) {
                 const err = new Error(`UserService Error`);
-                err.message = `이미 존재하는 아이디입니다.`
+                err.message = `이미 존재하는 아이디입니다.`;
                 err.statusCode = 400;
                 throw err;
             }
@@ -49,7 +49,7 @@ class UserService {
 
             if (userData === null) {
                 const err = new Error(`UserService Error`);
-                err.message = `가입 되어있는 정보가 아닙니다.`
+                err.message = `가입 되어있는 정보가 아닙니다.`;
                 err.statusCode = 400;
                 throw err;
             }
@@ -59,7 +59,7 @@ class UserService {
 
             if (!match) {
                 const err = new Error(`UserService Error`);
-                err.message = `비밀번호가 일치하지 않습니다.`
+                err.message = `비밀번호가 일치하지 않습니다.`;
                 err.statusCode = 400;
                 throw err;
             }
