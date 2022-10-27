@@ -63,7 +63,7 @@ class PostRepository {
             );
             return updatePostData;
         } catch {
-            const error = new Error(`수정가능한 게시글이 없습니다.`);
+            const error = new Error(`수정 가능한 게시글이 없습니다.`);
             error.statusCode = 500;
             throw error;
         }

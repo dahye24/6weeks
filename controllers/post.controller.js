@@ -1,7 +1,8 @@
 const PostService = require('../services/post.service');
-// const Joi = require('joi');
-// const re_title = /^[a-zA-Z0-9\s\S]{1,40}$/;
-// const re_content = /^[\s\S]{1,3000}$/;
+const re_title = /^[a-zA-Z0-9\s\S]{1,15}$/;
+const re_content = /^[\s\S]{1,150}$/;
+const re_makerProduct = /^[\s\S]{1,15}$/;
+
 
 class PostsController {
     postService = new PostService();
@@ -13,7 +14,7 @@ class PostsController {
             res.status(200).json({data: posts});
         } catch (err) {
             return res.status(err.statusCode || 500).json({message: err.message});
-        }
+        };
     };
 
 //게시글 상세 조회  & 댓글 조회
@@ -29,14 +30,42 @@ class PostsController {
     };
 
 //게시글 작성
+
     createPost = async (req, res, next) => {
         try {
-            // const postSchema = Joi.object({
-            //   title: Joi.string().pattern(re_title).required(),
-            //   content: Joi.string().pattern(re_content).required(),
-            // });
             const {loginId} = res.locals.user;
             const {typeofpet, category, subcategory, title, maker, product, content, photo} = req.body;
+
+            if((!typeofpet) || (!category) || (!subcategory)){
+            res.status(400).json({ errorMessage : "메인 카테고리를 선택해주세요."
+            }) 
+            
+            return
+            }    
+
+            if(!re_makerProduct.test(maker)){
+                res.status(400).json({ errorMessage : "제조사명을 입력해주세요."
+                }) 
+                return
+            }  
+            
+            if(!re_makerProduct.test(product)){
+                res.status(400).json({ errorMessage : "제품명을 입력해주세요."
+                }) 
+                return
+            }   
+    
+            if(!re_title.test(title)){
+                res.status(400).json({ errorMessage : "제목을 입력해주세요."
+                })
+                return
+            }
+    
+            if(!re_content.test(content)){
+                res.status(400).json({ errorMessage : "게시글을 입력해주세요."
+                })
+                return
+            }
 
             await this.postService.createPost(
                 loginId,
@@ -48,14 +77,16 @@ class PostsController {
                 product,
                 content,
                 photo
-            );
-            const allPosts = await this.postService.findAllPost();
-            res.status(200).json({data: allPosts});
+            );        
+        
+        const allPosts = await this.postService.findAllPost();
+        res.status(200).json({data: allPosts});
+            
         } catch (err) {
-            console.log(err);
             return res.status(err.statusCode || 500).json({message: err.message});
         }
     };
+
 
 //게시글 수정
     updatePost = async (req, res, next) => {
