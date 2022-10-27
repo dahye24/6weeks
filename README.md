@@ -16,7 +16,7 @@
 |이현하|FE|[Forza5](https://github.com/Forza5)|. 
   
 ## 🔍ERD
-![ERD](../../../../Downloads/drawSQL-export-2022-10-27_18_36.png)
+![drawSQL-export-2022-10-27_18_36](https://user-images.githubusercontent.com/112174727/198283554-5f862c05-f8e3-4d97-a375-8822aa85c148.png)
 
 ## 📝서버 내용 요약
 * `Node.js`의 `Express` 프레임워크를 사용해서 서버 구현.
