@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
     try {
         const [tokenType, tokenValue] = req.headers['authorization'].split(' ');
         if (tokenType !== 'Bearer') {
-            return res.status(403).send({
+            return res.status(401).send({
                 errorMessage: '로그인이 필요한 기능입니다.',
             });
         }
